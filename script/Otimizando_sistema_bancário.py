@@ -119,7 +119,7 @@ def depositar(saldo, valor_deposito, extrato, /):
     return saldo, extrato
 
 
-def sacar(saldo, valor_sacado, extrato, limite, numero_saques, limite_saques):
+def sacar(*, saldo, valor_sacado, extrato, limite, numero_saques, limite_saques):
     excedeu_saldo = valor_sacado > saldo
     excedeu_limite = valor_sacado > limite
     excedeu_saques = numero_saques >= limite_saques
@@ -194,12 +194,12 @@ def selecionar_funcoes_conta(contas, saldo, extrato, numero_saques, limite, LIMI
             valor_sacado = float(input('Informe o valor do saque: '))
 
             saldo, extrato, numero_saques = sacar(
-                saldo,
-                valor_sacado,
-                extrato,
-                limite,
-                numero_saques,
-                LIMITE_SAQUES,
+                saldo = saldo,
+                valor_sacado = valor_sacado,
+                extrato = extrato,
+                limite = limite,
+                numero_saques = numero_saques,
+                limite_saques = LIMITE_SAQUES,
             )
 
         elif consulta_conta == 'e':
@@ -275,7 +275,6 @@ def main():
     saldo = 0
     limite = 500
     extrato = ''
-    extrato_simplificado = ''
     numero_saques = 0
     numero_conta = 0
     senha = 0
